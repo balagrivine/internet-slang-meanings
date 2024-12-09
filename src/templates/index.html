@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slang Translator</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --bg-color: #f9fafb;
+            --text-color: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .search-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #4f46e5;
+        }
+
+        .result {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .result-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .result-text {
+            color: #4b5563;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 640px) {
+            .form {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Slang Translator</h1>
+            <p class="subtitle">Decode internet slang and abbreviations instantly</p>
+        </header>
+
+        <main>
+            <div class="search-box">
+                <form class="form" action="/decode" method="POST">
+                    <input 
+                        type="text" 
+                        name="slang" 
+                        class="input" 
+                        placeholder="Enter slang (e.g., LOL, IMO, TBH)"
+                        value="{{ slang if slang else '' }}"
+                        required
+                    >
+                    <button type="submit" class="button">Translate</button>
+                </form>
+            </div>
+
+            {% if meaning %}
+            <div class="result">
+                <h2 class="result-title">{{ slang }}</h2>
+                <p class="result-text">{{ meaning }}</p>
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
