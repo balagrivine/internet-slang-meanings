@@ -8,6 +8,10 @@ from .database import db_conn
 router = APIRouter()
 templates = Jinja2Templates(directory=Path(__file__).parent / 'templates')
 
+@router.get("/status")
+async def health_check():
+    return {"status": "healthy"}
+
 @router.get("/", response_class=HTMLResponse)
 async def get_view(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
