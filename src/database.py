@@ -8,11 +8,11 @@ class InitDB:
     """Initializes a postgresql database connection"""
 
     def __init__(self):
-        self.db_name: str = os.getenv("DB_NAME", "internetslang")
-        self.db_user: str = os.getenv("DB_USER", "postgres")
-        self.db_password: str = os.getenv("DB_PASSWORD", "postgres")
-        self.db_port: int = os.getenv("DB_PORT", 5432)
-        self.db_host: str = os.getenv("DB_HOST", "localhost")
+        self.db_name: str = os.getenv("DB_NAME")
+        self.db_user: str = os.getenv("DB_USER")
+        self.db_password: str = os.getenv("DB_PASSWORD")
+        self.db_port: int = os.getenv("DB_PORT")
+        self.db_host: str = os.getenv("DB_HOST")
 
         self.conn = None # Database connection
 
